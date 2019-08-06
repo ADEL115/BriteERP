@@ -5,7 +5,6 @@ import com.BriteERP.utilities.ConfigurationReader;
 import com.BriteERP.utilities.Driver;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ConfigurableReporter;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -16,6 +15,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
@@ -34,11 +34,13 @@ public class TestBase {
         String filePath = System.getProperty("user.dir") + "/test-output/report.html";
         htmlReporter = new ExtentHtmlReporter(filePath);
         report.attachReporter(htmlReporter);
-        htmlReporter.config().setReportName("Vytrack automated test reports");
+        htmlReporter.config().setReportName("BriteERP automated test reports");
+
+        // optional
         report.setSystemInfo("Environment", "QA3");
         report.setSystemInfo("OS", System.getProperty("os.name"));
         report.setSystemInfo("Browser", ConfigurationReader.get("browser"));
-        report.setSystemInfo("Testing Engineer", "Adel Suleymanov");
+        report.setSystemInfo("Testing Engineer", "Adel");
     }
 
     @AfterTest
@@ -62,19 +64,19 @@ public class TestBase {
     }
 
     @AfterMethod
-    public void tearDownMethod(ITestResult result) throws Exception{
-        // if test failed
-//        if(result.getStatus()==ITestResult.FAILURE) {
-//            // record the failed test
-//            extentLogger.fail(result.getName());
-//            // take screenshot and add to report
-//            String screenshotLocation = BrowserUtils.getScreenshot(result.getName());
-//            extentLogger.addScreenCaptureFromPath(screenshotLocation);
-//            // capture the exception
-//            extentLogger.fail(result.getThrowable());
-//        } else if(result.getStatus()==ITestResult.SKIP){
-//            extentLogger.skip("Test case skipped: " + result.getName());
-//        }
+    public void tearDownMethod(ITestResult result) throws InterruptedException, IOException {
+        // if the test failed
+        if (result.getStatus() == ITestResult.FAILURE) {
+            // record the failed test
+            extentLogger.fail(result.getName());
+            // take screen shot and add to report0
+            String screenshotLocation = BrowserUtils.getScreenshot(result.getName());
+            extentLogger.addScreenCaptureFromPath(screenshotLocation);
+            // capture the exception
+            extentLogger.fail(result.getThrowable());
+        } else if (result.getStatus() == ITestResult.SKIP) {
+            extentLogger.skip("Test case skipper: " + result.getName());
+        }
         Driver.closeDriver();
     }
 }

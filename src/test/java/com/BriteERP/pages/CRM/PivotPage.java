@@ -37,8 +37,8 @@ public class PivotPage {
                 break;
             }
         }
-        List<WebElement> cellsInColumn = Driver.get().findElements(By.xpath("//tr/td["+idx+"]"));
         if (idx == -1) throw new RuntimeException("Invalid Column Name");
+        List<WebElement> cellsInColumn = Driver.get().findElements(By.xpath("//tr/td["+idx+"]"));
         return cellsInColumn;
     }
 
@@ -55,6 +55,7 @@ public class PivotPage {
         }
         if (idx == -1) throw new RuntimeException("Invalid Column Name");
         return Driver.get().findElement(By.xpath("//tr["+(opportunityNumber+1)+"]/td["+idx+"]"));
+
     }
 
 }

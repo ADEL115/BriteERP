@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class Opportunities extends TestBase {
 
-    @Test (description = "creating opportunities", invocationCount = 1, enabled = false)
+    @Test (description = "creating opportunities", invocationCount = 5, enabled = false)
     public void test1() {
         // Creating opportunities in CRM Module
         // logging in with Sales Manager credentials
@@ -93,7 +93,7 @@ public class Opportunities extends TestBase {
         BrowserUtils.waitFor(1);
         String actualValue = listPage.getSingleCell("Expected Revenue", opportunityNumber).getText();
 
-        assertEquals(actualValue, expectedValue, "<<<VALUES ARE NOT THE SAME>>>");
+        assertEquals(actualValue, expectedValue, "<<< VALUES ARE NOT THE SAME >>>");
     }
 
     @Test(description = "testing the total expected revenue on the pivot table")
@@ -129,7 +129,7 @@ public class Opportunities extends TestBase {
             String val = expectedRevenue.get(i).getText().replace(",","");
             actualTotal += Double.parseDouble(val);
         }
-        assertEquals(actualTotal, expectedTotal,"<<<TOTAL DISPLAYED IS NOT ACCURATE>>>");
+        assertEquals(actualTotal, expectedTotal,"<<< TOTAL DISPLAYED IS NOT ACCURATE >>>");
 
     }
 }
