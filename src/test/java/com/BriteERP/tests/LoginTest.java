@@ -10,7 +10,7 @@ public class LoginTest extends TestBase{
     @Test (description = "Sales Manager positive login")
     public void test1() {
 
-        // testing login
+
         LoginPage loginPage = new LoginPage();
         loginPage.login(ConfigurationReader.get("sales_manager"), ConfigurationReader.get("sales_manager_password"));
 
