@@ -10,11 +10,6 @@ public class LoginTest extends TestBase{
     @Test (description = "Sales Manager positive login")
     public void test1() {
 
-<<<<<<< HEAD
-
-=======
-        // testing github fetch
->>>>>>> refs/remotes/origin/master
         LoginPage loginPage = new LoginPage();
         loginPage.login(ConfigurationReader.get("sales_manager"), ConfigurationReader.get("sales_manager_password"));
 
