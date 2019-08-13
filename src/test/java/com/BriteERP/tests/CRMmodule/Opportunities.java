@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class Opportunities extends TestBase {
 
-    @Test (description = "creating opportunities", invocationCount = 5, enabled = false)
+    @Test (description = "creating opportunities", invocationCount = 5, enabled = true)
     public void test1() {
         // Creating opportunities in CRM Module
         // logging in with Sales Manager credentials
