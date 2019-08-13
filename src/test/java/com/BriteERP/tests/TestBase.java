@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    // changes by Zinah
+    // changes by Zinah to branch
     protected WebDriver driver;
     protected Actions actions;
     protected WebDriverWait wait;
